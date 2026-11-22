@@ -6,7 +6,7 @@
 <title>AMBER | Luxury Perfumes</title>
 <meta name="description" content="AMBER - luxury perfumes delivered to your door in Mauritania.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,600;1,400&family=Jost:wght@300;400;500&family=Cairo:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
 :root{--gold:#d4af5f;--gold2:#f3dc9a;--dark:#0b0908;--card:#15110e;--line:#3a3226;--text:#f3ead8;--muted:#b9ab90}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -14,6 +14,9 @@ html{scroll-behavior:smooth}
 body{background:var(--dark);color:var(--text);font-family:'Jost',Arial,sans-serif;font-weight:300}
 h1,h2,h3,.logo{font-family:'Cormorant Garamond',Georgia,serif}
 .topbar{background:linear-gradient(90deg,#3b2a10,#6b4e1c,#3b2a10);text-align:center;font-size:12px;letter-spacing:2px;padding:8px 10px;color:#fff3d0}
+.langbar{direction:ltr;display:flex;justify-content:center;gap:8px;padding:8px;background:#080605;border-bottom:1px solid var(--line)}
+.langbar button{background:none;border:1px solid var(--line);color:var(--muted);padding:5px 16px;font-family:'Jost','Cairo',sans-serif;font-size:12px;letter-spacing:2px;border-radius:30px}
+.langbar button.on{background:var(--gold);border-color:var(--gold);color:#1a1307}
 header{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(11,9,8,.88);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:5}
 .logo{letter-spacing:9px;font-size:26px;font-weight:600;color:var(--gold)}
 .cartbtn{background:none;border:1px solid var(--gold);color:var(--gold);padding:9px 16px;font-family:inherit;font-size:13px;letter-spacing:3px;border-radius:30px}
@@ -47,15 +50,27 @@ header{display:flex;justify-content:space-between;align-items:center;padding:14p
 .notes{font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:12px;border-top:1px solid var(--line);padding-top:10px}
 .notes b{color:var(--gold);font-weight:400}
 .price{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;margin-bottom:4px}
-.old{text-decoration:line-through;color:#7d725e;font-size:16px;margin-left:10px;font-weight:400}
+.old{text-decoration:line-through;color:#7d725e;font-size:16px;margin-left:10px;margin-right:10px;font-weight:400}
 .stock{font-size:12px;margin-bottom:14px;letter-spacing:1px}
 .in{color:#7fbf7f}.out{color:#d46a6a}
 .add{width:100%;background:linear-gradient(135deg,#f3dc9a,#b98c33);color:#1a1307;border:0;padding:14px;font-family:inherit;font-size:13px;letter-spacing:3px;font-weight:500;border-radius:30px}
 .add:disabled{background:#2a241c;color:#7d725e}
+.reviews{padding:30px 16px 40px;max-width:960px;margin:auto}
+.reviews .title{padding:20px 0 24px}
+.rgrid{display:grid;grid-template-columns:1fr;gap:16px}
+@media(min-width:700px){.rgrid{grid-template-columns:repeat(3,1fr)}}
+.rcard{border:1px solid var(--line);background:linear-gradient(180deg,#1a1510,var(--card));border-radius:14px;padding:18px}
+.rcard .stars{color:var(--gold);letter-spacing:3px;font-size:16px}
+.rcard p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:19px;color:var(--text);margin:10px 0;line-height:1.5}
+.rcard small{color:var(--muted);letter-spacing:2px;font-size:12px}
+.rform{margin-top:30px;border:1px solid var(--line);border-radius:14px;padding:20px;background:var(--card)}
+.rform h3{font-weight:500;color:var(--gold2);font-size:24px;letter-spacing:2px;margin-bottom:6px}
+.rform .rbtn{width:100%;margin-top:18px;background:linear-gradient(135deg,#f3dc9a,#b98c33);color:#1a1307;border:0;padding:14px;font-family:inherit;font-size:13px;letter-spacing:3px;font-weight:500;border-radius:30px}
 #panel{position:fixed;inset:0;background:var(--dark);z-index:20;overflow-y:auto;padding:20px;display:none}
 #panel.open{display:block}
 #panel h2{font-weight:500;color:var(--gold);letter-spacing:5px;margin-bottom:16px;font-size:28px}
 .line{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding:12px 0;font-size:15px}
+.qty{direction:ltr}
 .qty button{background:none;border:1px solid var(--line);color:var(--text);width:32px;height:32px;font-size:16px;border-radius:50%}
 .qty span{margin:0 10px}
 label{display:block;margin:14px 0 6px;font-size:13px;color:var(--muted);letter-spacing:1px}
@@ -72,13 +87,27 @@ footer small{display:block;margin-top:20px;font-size:11px;color:#6b614f}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
 @keyframes shimmer{0%{background-position:0 0}100%{background-position:300% 0}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+
+/* ===== Arabic (right-to-left) ===== */
+html[lang="ar"] *{letter-spacing:0}
+html[lang="ar"] .logo{letter-spacing:9px}
+html[lang="ar"] .hero h1{letter-spacing:14px}
+html[lang="ar"] body,html[lang="ar"] h2,html[lang="ar"] h3,html[lang="ar"] .hero .tag,html[lang="ar"] .features b,html[lang="ar"] .rcard p{font-family:'Cairo',Arial,sans-serif}
+html[lang="ar"] .hero .tag,html[lang="ar"] .rcard p{font-style:normal}
+html[lang="ar"] .wa{right:auto;left:16px}
+html[lang="ar"] .badge{right:auto;left:14px}
 </style>
 </head>
 <body>
-<div class="topbar">DELIVERY IN NOUAKCHOTT &bull; ORDER EASILY ON WHATSAPP</div>
+<div class="topbar" data-i18n="topbar">DELIVERY IN NOUAKCHOTT &bull; ORDER EASILY ON WHATSAPP</div>
+<div class="langbar">
+  <button id="l-en" onclick="setLang('en')">EN</button>
+  <button id="l-fr" onclick="setLang('fr')">FR</button>
+  <button id="l-ar" onclick="setLang('ar')">عربي</button>
+</div>
 <header>
   <div class="logo">AMBER</div>
-  <button class="cartbtn" onclick="openCart()">CART (<span id="count">0</span>)</button>
+  <button class="cartbtn" onclick="openCart()"><span data-i18n="cart">CART</span> (<span id="count">0</span>)</button>
 </header>
 
 <section class="hero">
@@ -91,109 +120,260 @@ footer small{display:block;margin-top:20px;font-size:11px;color:#6b614f}
     <text x="50" y="84" text-anchor="middle" font-size="10" fill="#d4af5f" font-family="serif" letter-spacing="2">AMBER</text>
   </svg>
   <h1>AMBER</h1>
-  <div class="tag">The art of fragrance</div>
-  <p class="sub">LUXURY PERFUMES, DELIVERED TO YOUR DOOR</p>
-  <a class="cta" href="#shop">DISCOVER THE COLLECTION</a>
+  <div class="tag" data-i18n="tag">The art of fragrance</div>
+  <p class="sub" data-i18n="sub">LUXURY PERFUMES, DELIVERED TO YOUR DOOR</p>
+  <a class="cta" href="#shop" data-i18n="cta">DISCOVER THE COLLECTION</a>
 </section>
 
 <section class="features">
-  <div><b>Curated Collection</b><span>Fragrances for every taste and occasion</span></div>
-  <div><b>Easy Ordering</b><span>Send your order directly on WhatsApp</span></div>
-  <div><b>Flexible Delivery</b><span>Home delivery or store pickup</span></div>
+  <div><b data-i18n="f1t">Curated Collection</b><span data-i18n="f1d">Fragrances for every taste and occasion</span></div>
+  <div><b data-i18n="f2t">Easy Ordering</b><span data-i18n="f2d">Send your order directly on WhatsApp</span></div>
+  <div><b data-i18n="f3t">Flexible Delivery</b><span data-i18n="f3d">Home delivery or store pickup</span></div>
 </section>
 
-<div class="title" id="shop"><h2>THE COLLECTION</h2><div class="line2"></div></div>
+<div class="title" id="shop"><h2 data-i18n="coll">THE COLLECTION</h2><div class="line2"></div></div>
 <div class="filters" id="filters"></div>
 <div class="grid" id="grid"></div>
 
+<section class="reviews" id="reviews">
+  <div class="title"><h2 data-i18n="revtitle">CUSTOMER REVIEWS</h2><div class="line2"></div></div>
+  <div class="rgrid" id="rgrid"></div>
+  <div class="rform">
+    <h3 data-i18n="leave">Leave a review</h3>
+    <label data-i18n="yname">Your name</label>
+    <input id="rname" data-ph="yname" placeholder="Your name">
+    <label data-i18n="yrate">Your rating</label>
+    <select id="rstars"></select>
+    <label data-i18n="ycomment">Your comment</label>
+    <textarea id="rtext" rows="3" data-ph="rplace" placeholder="Tell us about your experience"></textarea>
+    <button class="rbtn" onclick="sendReview()" data-i18n="sendrev">SEND MY REVIEW</button>
+  </div>
+</section>
+
 <div id="panel">
-  <h2>YOUR CART</h2>
+  <h2 data-i18n="cartTitle">YOUR CART</h2>
   <div id="items"></div>
   <div class="total" id="total"></div>
   <div id="form">
-    <label>Your name</label>
-    <input id="name" placeholder="Full name">
-    <label>Delivery option</label>
-    <select id="delivery">
-      <option>Delivery in Nouakchott</option>
-      <option>Pickup from store</option>
-      <option>Delivery to another city</option>
-    </select>
-    <label>Address / area</label>
-    <textarea id="address" rows="2" placeholder="Neighborhood, street, landmark"></textarea>
-    <label>Payment method</label>
-    <select id="payment">
-      <option>Cash on delivery</option>
-      <option>Bankily</option>
-      <option>Masrvi</option>
-      <option>Bank transfer</option>
-    </select>
+    <label data-i18n="yname">Your name</label>
+    <input id="name" data-ph="fullname" placeholder="Full name">
+    <label data-i18n="delivery">Delivery option</label>
+    <select id="delivery"></select>
+    <label data-i18n="address">Address / area</label>
+    <textarea id="address" rows="2" data-ph="addrph" placeholder="Neighborhood, street, landmark"></textarea>
+    <label data-i18n="payment">Payment method</label>
+    <select id="payment"></select>
     <br><br>
-    <button class="send" onclick="sendOrder()">SEND ORDER ON WHATSAPP</button>
+    <button class="send" onclick="sendOrder()" data-i18n="sendorder">SEND ORDER ON WHATSAPP</button>
   </div>
-  <button class="close" onclick="closeCart()">&larr; Continue shopping</button>
+  <button class="close" onclick="closeCart()" data-i18n="cont">&larr; Continue shopping</button>
 </div>
 
-<a class="wa" href="https://wa.me/221789607050">&#128172; WhatsApp</a>
+<a class="wa" href="https://wa.me/221789607050">&#128172; <span data-i18n="wa">WhatsApp</span></a>
 
 <footer>
   <div class="logo">AMBER</div>
-  <p>Luxury perfumes, delivered to your door.<br>Questions? <a href="https://wa.me/221789607050">Chat with us on WhatsApp</a></p>
-  <small>&copy; 2026 AMBER. All rights reserved.</small>
+  <p><span data-i18n="foot1">Luxury perfumes, delivered to your door.</span><br><span data-i18n="foot2">Questions?</span> <a href="https://wa.me/221789607050" data-i18n="foot3">Chat with us on WhatsApp</a></p>
+  <small data-i18n="rights">&copy; 2026 AMBER. All rights reserved.</small>
 </footer>
 
 <script>
 // ===== SETTINGS =====
 var PHONE = "221789607050";
-var CURRENCY = "MRU";
+var DEFAULT_LANG = "en";   // change to "fr" or "ar" to open the site in that language
 
 // ===== YOUR PRODUCTS (edit this list) =====
+// fr: and ar: are the French and Arabic versions. If you leave them out, English is shown.
 var products = [
   {id:1, name:"Amber Noir", brand:"AMBER", category:"Unisex", occasion:"Evening", type:"Oriental",
    top:"Bergamot", middle:"Rose, Saffron", base:"Amber, Oud",
-   price:2500, oldPrice:3000, stock:10, image:""},
+   price:2500, oldPrice:3000, stock:10, image:"",
+   fr:{type:"Oriental", occasion:"Soirée", top:"Bergamote", middle:"Rose, Safran", base:"Ambre, Oud"},
+   ar:{name:"عنبر نوار", type:"شرقي", occasion:"سهرة", top:"برغموت", middle:"ورد، زعفران", base:"عنبر، عود"}},
   {id:2, name:"Rose Royale", brand:"AMBER", category:"Women", occasion:"Wedding", type:"Floral",
    top:"Pink pepper", middle:"Damask rose", base:"Musk, Vanilla",
-   price:2800, oldPrice:0, stock:5, image:""},
+   price:2800, oldPrice:0, stock:5, image:"",
+   fr:{type:"Floral", occasion:"Mariage", top:"Poivre rose", middle:"Rose de Damas", base:"Musc, Vanille"},
+   ar:{name:"روز رويال", type:"زهري", occasion:"زفاف", top:"فلفل وردي", middle:"ورد دمشقي", base:"مسك، فانيليا"}},
   {id:3, name:"Oud Prestige", brand:"AMBER", category:"Men", occasion:"Special occasion", type:"Woody",
    top:"Cardamom", middle:"Leather", base:"Oud, Sandalwood",
-   price:3500, oldPrice:0, stock:0, image:""},
+   price:3500, oldPrice:0, stock:0, image:"",
+   fr:{type:"Boisé", occasion:"Occasion spéciale", top:"Cardamome", middle:"Cuir", base:"Oud, Santal"},
+   ar:{name:"عود بريستيج", type:"خشبي", occasion:"مناسبة خاصة", top:"هيل", middle:"جلد", base:"عود، صندل"}},
   {id:4, name:"Citrus Dawn", brand:"AMBER", category:"Unisex", occasion:"Daily", type:"Fresh",
    top:"Lemon, Mint", middle:"Jasmine", base:"White musk",
-   price:1800, oldPrice:2000, stock:20, image:""}
+   price:1800, oldPrice:2000, stock:20, image:"",
+   fr:{name:"Aube d'agrumes", type:"Frais", occasion:"Quotidien", top:"Citron, Menthe", middle:"Jasmin", base:"Musc blanc"},
+   ar:{name:"فجر الحمضيات", type:"منعش", occasion:"يومي", top:"ليمون، نعناع", middle:"ياسمين", base:"مسك أبيض"}}
 ];
+
+// ===== APPROVED REVIEWS (replace the samples with real reviews) =====
+// text can be one simple line, or {en:"...", fr:"...", ar:"..."}
+var reviews = [
+  {name:"Sample Customer 1", stars:5, text:{en:"Beautiful fragrance and fast delivery. I will order again.", fr:"Très beau parfum et livraison rapide. Je commanderai à nouveau.", ar:"عطر رائع وتوصيل سريع. سأطلب مرة أخرى."}},
+  {name:"Sample Customer 2", stars:5, text:{en:"Elegant packaging and a scent that lasts all day.", fr:"Emballage élégant et un parfum qui tient toute la journée.", ar:"تغليف أنيق ورائحة تدوم طوال اليوم."}},
+  {name:"Sample Customer 3", stars:4, text:{en:"Great service on WhatsApp. Very helpful.", fr:"Excellent service sur WhatsApp. Très serviable.", ar:"خدمة ممتازة عبر واتساب. متعاونون جدًا."}}
+];
+
+// ===== TRANSLATIONS =====
+var T = {
+en:{
+ topbar:"DELIVERY IN NOUAKCHOTT • ORDER EASILY ON WHATSAPP", cart:"CART", tag:"The art of fragrance",
+ sub:"LUXURY PERFUMES, DELIVERED TO YOUR DOOR", cta:"DISCOVER THE COLLECTION",
+ f1t:"Curated Collection", f1d:"Fragrances for every taste and occasion",
+ f2t:"Easy Ordering", f2d:"Send your order directly on WhatsApp",
+ f3t:"Flexible Delivery", f3d:"Home delivery or store pickup",
+ coll:"THE COLLECTION", all:"All", cats:{Women:"Women", Men:"Men", Unisex:"Unisex"},
+ top:"Top", heart:"Heart", base:"Base", occ:"Occasion",
+ instock:"In stock", out:"Out of stock", add:"ADD TO CART", sold:"SOLD OUT",
+ revtitle:"CUSTOMER REVIEWS", leave:"Leave a review", yname:"Your name", yrate:"Your rating",
+ ycomment:"Your comment", rplace:"Tell us about your experience", sendrev:"SEND MY REVIEW",
+ r5:"Excellent", r4:"Very good", r3:"Good", r2:"Fair", r1:"Poor",
+ needrev:"Please enter your name and comment.",
+ cartTitle:"YOUR CART", fullname:"Full name", delivery:"Delivery option",
+ d1:"Delivery in Nouakchott", d2:"Pickup from store", d3:"Delivery to another city",
+ address:"Address / area", addrph:"Neighborhood, street, landmark", payment:"Payment method",
+ p1:"Cash on delivery", p2:"Bankily", p3:"Masrvi", p4:"Bank transfer",
+ sendorder:"SEND ORDER ON WHATSAPP", cont:"← Continue shopping", empty:"Your cart is empty.",
+ total:"Total", needord:"Please enter your name and address.",
+ neworder:"*New AMBER order*", mname:"Name", mdeliv:"Delivery", maddr:"Address", mpay:"Payment",
+ newrev:"*New AMBER review*", mrating:"Rating", mcomment:"Comment",
+ wa:"WhatsApp", foot1:"Luxury perfumes, delivered to your door.", foot2:"Questions?",
+ foot3:"Chat with us on WhatsApp", rights:"© 2026 AMBER. All rights reserved.", cur:"MRU"
+},
+fr:{
+ topbar:"LIVRAISON À NOUAKCHOTT • COMMANDEZ FACILEMENT SUR WHATSAPP", cart:"PANIER", tag:"L'art du parfum",
+ sub:"PARFUMS DE LUXE, LIVRÉS CHEZ VOUS", cta:"DÉCOUVRIR LA COLLECTION",
+ f1t:"Collection sélectionnée", f1d:"Des parfums pour tous les goûts et toutes les occasions",
+ f2t:"Commande facile", f2d:"Envoyez votre commande directement sur WhatsApp",
+ f3t:"Livraison flexible", f3d:"Livraison à domicile ou retrait en boutique",
+ coll:"LA COLLECTION", all:"Tous", cats:{Women:"Femme", Men:"Homme", Unisex:"Mixte"},
+ top:"Tête", heart:"Cœur", base:"Fond", occ:"Occasion",
+ instock:"En stock", out:"Rupture de stock", add:"AJOUTER AU PANIER", sold:"ÉPUISÉ",
+ revtitle:"AVIS CLIENTS", leave:"Laisser un avis", yname:"Votre nom", yrate:"Votre note",
+ ycomment:"Votre commentaire", rplace:"Racontez-nous votre expérience", sendrev:"ENVOYER MON AVIS",
+ r5:"Excellent", r4:"Très bien", r3:"Bien", r2:"Moyen", r1:"Mauvais",
+ needrev:"Veuillez saisir votre nom et votre commentaire.",
+ cartTitle:"VOTRE PANIER", fullname:"Nom complet", delivery:"Mode de livraison",
+ d1:"Livraison à Nouakchott", d2:"Retrait en boutique", d3:"Livraison dans une autre ville",
+ address:"Adresse / quartier", addrph:"Quartier, rue, point de repère", payment:"Mode de paiement",
+ p1:"Paiement à la livraison", p2:"Bankily", p3:"Masrvi", p4:"Virement bancaire",
+ sendorder:"ENVOYER LA COMMANDE SUR WHATSAPP", cont:"← Continuer mes achats", empty:"Votre panier est vide.",
+ total:"Total", needord:"Veuillez saisir votre nom et votre adresse.",
+ neworder:"*Nouvelle commande AMBER*", mname:"Nom", mdeliv:"Livraison", maddr:"Adresse", mpay:"Paiement",
+ newrev:"*Nouvel avis AMBER*", mrating:"Note", mcomment:"Commentaire",
+ wa:"WhatsApp", foot1:"Parfums de luxe, livrés chez vous.", foot2:"Des questions ?",
+ foot3:"Écrivez-nous sur WhatsApp", rights:"© 2026 AMBER. Tous droits réservés.", cur:"MRU"
+},
+ar:{
+ topbar:"التوصيل في نواكشوط • اطلب بسهولة عبر واتساب", cart:"السلة", tag:"فن العطور",
+ sub:"عطور فاخرة تصلك إلى باب منزلك", cta:"اكتشف المجموعة",
+ f1t:"مجموعة مختارة", f1d:"عطور لكل الأذواق والمناسبات",
+ f2t:"طلب سهل", f2d:"أرسل طلبك مباشرة عبر واتساب",
+ f3t:"توصيل مرن", f3d:"توصيل إلى المنزل أو الاستلام من المتجر",
+ coll:"المجموعة", all:"الكل", cats:{Women:"نسائي", Men:"رجالي", Unisex:"للجنسين"},
+ top:"القمة", heart:"القلب", base:"القاعدة", occ:"المناسبة",
+ instock:"متوفر", out:"غير متوفر", add:"أضف إلى السلة", sold:"نفد",
+ revtitle:"آراء العملاء", leave:"اترك رأيك", yname:"اسمك", yrate:"تقييمك",
+ ycomment:"تعليقك", rplace:"حدثنا عن تجربتك", sendrev:"إرسال رأيي",
+ r5:"ممتاز", r4:"جيد جدًا", r3:"جيد", r2:"مقبول", r1:"سيئ",
+ needrev:"يرجى إدخال اسمك وتعليقك.",
+ cartTitle:"سلتك", fullname:"الاسم الكامل", delivery:"طريقة التوصيل",
+ d1:"التوصيل في نواكشوط", d2:"الاستلام من المتجر", d3:"التوصيل إلى مدينة أخرى",
+ address:"العنوان / الحي", addrph:"الحي، الشارع، معلم قريب", payment:"طريقة الدفع",
+ p1:"الدفع عند الاستلام", p2:"بنكيلي", p3:"مصرفي", p4:"تحويل بنكي",
+ sendorder:"إرسال الطلب عبر واتساب", cont:"→ متابعة التسوق", empty:"سلتك فارغة.",
+ total:"المجموع", needord:"يرجى إدخال اسمك وعنوانك.",
+ neworder:"*طلب جديد من AMBER*", mname:"الاسم", mdeliv:"التوصيل", maddr:"العنوان", mpay:"الدفع",
+ newrev:"*رأي جديد في AMBER*", mrating:"التقييم", mcomment:"التعليق",
+ wa:"واتساب", foot1:"عطور فاخرة تصلك إلى باب منزلك.", foot2:"لديك أسئلة؟",
+ foot3:"راسلنا عبر واتساب", rights:"© 2026 AMBER. جميع الحقوق محفوظة.", cur:"أوقية"
+}
+};
 
 // ===== STORE CODE (no need to edit below) =====
 var BOTTLE = '<svg viewBox="0 0 100 140" width="90" height="126"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f3dc9a"/><stop offset="1" stop-color="#8a6a22"/></linearGradient></defs><rect x="40" y="6" width="20" height="16" rx="3" fill="url(#g)"/><rect x="44" y="22" width="12" height="10" fill="#d4af5f"/><rect x="18" y="32" width="64" height="98" rx="14" fill="rgba(212,175,95,.15)" stroke="url(#g)" stroke-width="2"/><rect x="30" y="62" width="40" height="34" rx="3" fill="none" stroke="#d4af5f" stroke-opacity=".5"/><text x="50" y="84" text-anchor="middle" font-size="10" fill="#d4af5f" font-family="serif" letter-spacing="2">AMBER</text></svg>';
 var cart = {};
 var filter = "All";
+var lang = DEFAULT_LANG;
+try { var sl = localStorage.getItem("amberLang"); if(sl && T[sl]) lang = sl; } catch(e) {}
 try { cart = JSON.parse(localStorage.getItem("amberCart") || "{}"); } catch(e) {}
+for(var ck in cart){ if(!find(ck)) delete cart[ck]; }
 
 function save(){ try { localStorage.setItem("amberCart", JSON.stringify(cart)); } catch(e) {} }
 function find(id){ return products.filter(function(p){return p.id==id})[0]; }
-function fmt(n){ return n.toLocaleString("en-US") + " " + CURRENCY; }
+function fmt(n){ return n.toLocaleString("en-US") + " " + T[lang].cur; }
+function esc(t){ return String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+function pf(p,f){ return (p[lang] && p[lang][f]) ? p[lang][f] : p[f]; }
+function stars(n){ var s=""; for(var i=1;i<=5;i++){ s += i<=n ? "\u2605" : "\u2606"; } return s; }
+
+function fillSelect(id, labels, values){
+  var s=document.getElementById(id), i=s.selectedIndex; if(i<0) i=0;
+  s.innerHTML = labels.map(function(t,k){ return '<option value="'+(values?values[k]:k)+'">'+t+'</option>'; }).join("");
+  s.selectedIndex=i;
+}
+
+function applyLang(){
+  var d=T[lang];
+  document.documentElement.lang=lang;
+  document.documentElement.dir = (lang=="ar") ? "rtl" : "ltr";
+  var a=document.querySelectorAll("[data-i18n]");
+  for(var i=0;i<a.length;i++){ a[i].textContent = d[a[i].getAttribute("data-i18n")]; }
+  var b=document.querySelectorAll("[data-ph]");
+  for(var j=0;j<b.length;j++){ b[j].setAttribute("placeholder", d[b[j].getAttribute("data-ph")]); }
+  fillSelect("delivery",[d.d1,d.d2,d.d3]);
+  fillSelect("payment",[d.p1,d.p2,d.p3,d.p4]);
+  fillSelect("rstars",[stars(5)+" "+d.r5, stars(4)+" "+d.r4, stars(3)+" "+d.r3, stars(2)+" "+d.r2, stars(1)+" "+d.r1],[5,4,3,2,1]);
+  ["en","fr","ar"].forEach(function(l){ document.getElementById("l-"+l).className = (l==lang) ? "on" : ""; });
+  drawFilters(); drawProducts(); drawReviews(); drawCart(); update();
+}
+function setLang(l){
+  lang=l;
+  try { localStorage.setItem("amberLang", l); } catch(e) {}
+  applyLang();
+}
 
 function drawFilters(){
+  var d=T[lang];
   var cats = ["All","Women","Men","Unisex"];
   document.getElementById("filters").innerHTML = cats.map(function(c){
-    return '<button class="'+(c==filter?'on':'')+'" onclick="setFilter(\''+c+'\')">'+c+'</button>';
+    var label = (c=="All") ? d.all : d.cats[c];
+    return '<button class="'+(c==filter?'on':'')+'" onclick="setFilter(\''+c+'\')">'+label+'</button>';
   }).join("");
 }
 function setFilter(c){ filter=c; drawFilters(); drawProducts(); }
 
 function drawProducts(){
+  var d=T[lang];
   var list = products.filter(function(p){ return filter=="All" || p.category==filter; });
   document.getElementById("grid").innerHTML = list.map(function(p){
-    var pic = p.image ? '<img src="'+p.image+'" alt="'+p.name+'">' : BOTTLE;
-    var disc = p.oldPrice>p.price ? '<div class="badge">-'+Math.round((1-p.price/p.oldPrice)*100)+'%</div>' : '';
+    var nm = pf(p,"name");
+    var pic = p.image ? '<img src="'+p.image+'" alt="'+nm+'">' : BOTTLE;
+    var disc = p.oldPrice>p.price ? '<div class="badge" dir="ltr">-'+Math.round((1-p.price/p.oldPrice)*100)+'%</div>' : '';
     var old = p.oldPrice>p.price ? '<span class="old">'+fmt(p.oldPrice)+'</span>' : '';
-    var st = p.stock>0 ? '<div class="stock in">&#9679; In stock</div>' : '<div class="stock out">&#9679; Out of stock</div>';
+    var st = p.stock>0 ? '<div class="stock in">&#9679; '+d.instock+'</div>' : '<div class="stock out">&#9679; '+d.out+'</div>';
     return '<div class="card">'+disc+'<div class="pic">'+pic+'</div>'+
-      '<h3>'+p.name+'</h3><div class="brand">'+p.brand+' &bull; '+p.category+' &bull; '+p.type+'</div>'+
-      '<div class="notes"><b>Top</b> &nbsp;'+p.top+'<br><b>Heart</b> &nbsp;'+p.middle+'<br><b>Base</b> &nbsp;'+p.base+'<br><b>Occasion</b> &nbsp;'+p.occasion+'</div>'+
+      '<h3>'+nm+'</h3><div class="brand">'+p.brand+' &bull; '+d.cats[p.category]+' &bull; '+pf(p,"type")+'</div>'+
+      '<div class="notes"><b>'+d.top+'</b> &nbsp;'+pf(p,"top")+'<br><b>'+d.heart+'</b> &nbsp;'+pf(p,"middle")+'<br><b>'+d.base+'</b> &nbsp;'+pf(p,"base")+'<br><b>'+d.occ+'</b> &nbsp;'+pf(p,"occasion")+'</div>'+
       '<div class="price">'+fmt(p.price)+old+'</div>'+st+
-      '<button class="add" '+(p.stock>0?'':'disabled')+' onclick="add('+p.id+')">'+(p.stock>0?'ADD TO CART':'SOLD OUT')+'</button></div>';
+      '<button class="add" '+(p.stock>0?'':'disabled')+' onclick="add('+p.id+')">'+(p.stock>0?d.add:d.sold)+'</button></div>';
   }).join("");
+}
+
+function drawReviews(){
+  document.getElementById("rgrid").innerHTML = reviews.map(function(r){
+    var t = (typeof r.text=="object") ? (r.text[lang] || r.text.en) : r.text;
+    return '<div class="rcard"><div class="stars">'+stars(r.stars)+'</div><p>&ldquo;'+esc(t)+'&rdquo;</p><small>'+esc(r.name).toUpperCase()+'</small></div>';
+  }).join("");
+}
+function sendReview(){
+  var d=T[lang];
+  var n = document.getElementById("rname").value.trim();
+  var t = document.getElementById("rtext").value.trim();
+  var s = document.getElementById("rstars").value;
+  if(!n || !t){ alert(d.needrev); return; }
+  var msg = d.newrev+"\n\n"+d.mname+": "+n+"\n"+d.mrating+": "+s+"/5\n"+d.mcomment+": "+t;
+  window.location.href = "https://wa.me/"+PHONE+"?text="+encodeURIComponent(msg);
 }
 
 function add(id){
@@ -213,34 +393,37 @@ function totalPrice(){ var t=0; for(var k in cart) t+=find(k).price*cart[k]; ret
 function update(){ document.getElementById("count").textContent = totalQty(); }
 
 function drawCart(){
+  var d=T[lang];
   var html="";
   for(var k in cart){
     var p=find(k);
-    html+='<div class="line"><div>'+p.name+'<br><small>'+fmt(p.price)+'</small></div>'+
+    html+='<div class="line"><div>'+pf(p,"name")+'<br><small>'+fmt(p.price)+'</small></div>'+
       '<div class="qty"><button onclick="change('+k+',-1)">-</button><span>'+cart[k]+'</span><button onclick="change('+k+',1)">+</button></div></div>';
   }
-  document.getElementById("items").innerHTML = html || "<p>Your cart is empty.</p>";
-  document.getElementById("total").textContent = totalQty()? "Total: "+fmt(totalPrice()) : "";
+  document.getElementById("items").innerHTML = html || "<p>"+d.empty+"</p>";
+  document.getElementById("total").textContent = totalQty()? d.total+": "+fmt(totalPrice()) : "";
   document.getElementById("form").style.display = totalQty()? "block":"none";
 }
 function openCart(){ drawCart(); document.getElementById("panel").className="open"; window.scrollTo(0,0); }
 function closeCart(){ document.getElementById("panel").className=""; }
 
+function optText(id){ var s=document.getElementById(id); return s.options[s.selectedIndex].text; }
 function sendOrder(){
+  var d=T[lang];
   var name=document.getElementById("name").value.trim();
   var address=document.getElementById("address").value.trim();
-  if(!name || !address){ alert("Please enter your name and address."); return; }
-  var msg="*New AMBER order*\n\n";
-  for(var k in cart){ var p=find(k); msg+="- "+p.name+" x"+cart[k]+" = "+fmt(p.price*cart[k])+"\n"; }
-  msg+="\n*Total: "+fmt(totalPrice())+"*\n\n";
-  msg+="Name: "+name+"\n";
-  msg+="Delivery: "+document.getElementById("delivery").value+"\n";
-  msg+="Address: "+address+"\n";
-  msg+="Payment: "+document.getElementById("payment").value;
+  if(!name || !address){ alert(d.needord); return; }
+  var msg=d.neworder+"\n\n";
+  for(var k in cart){ var p=find(k); msg+="- "+pf(p,"name")+" x"+cart[k]+" = "+fmt(p.price*cart[k])+"\n"; }
+  msg+="\n*"+d.total+": "+fmt(totalPrice())+"*\n\n";
+  msg+=d.mname+": "+name+"\n";
+  msg+=d.mdeliv+": "+optText("delivery")+"\n";
+  msg+=d.maddr+": "+address+"\n";
+  msg+=d.mpay+": "+optText("payment");
   window.location.href="https://wa.me/"+PHONE+"?text="+encodeURIComponent(msg);
 }
 
-drawFilters(); drawProducts(); update();
+applyLang();
 </script>
 </body>
 </html>
