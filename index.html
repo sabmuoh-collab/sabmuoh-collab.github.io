@@ -176,4 +176,16 @@ function sendOrder(){
   var address=document.getElementById("address").value.trim();
   if(!name || !address){ alert("Please enter your name and address."); return; }
   var msg="*New AMBER order*\n\n";
-  for(var k in cart){ var p=find(k); ms
+  for(var k in cart){ var p=find(k); msg+="- "+p.name+" x"+cart[k]+" = "+fmt(p.price*cart[k])+"\n"; }
+  msg+="\n*Total: "+fmt(totalPrice())+"*\n\n";
+  msg+="Name: "+name+"\n";
+  msg+="Delivery: "+document.getElementById("delivery").value+"\n";
+  msg+="Address: "+address+"\n";
+  msg+="Payment: "+document.getElementById("payment").value;
+  window.location.href="https://wa.me/"+PHONE+"?text="+encodeURIComponent(msg);
+}
+
+drawFilters(); drawProducts(); update();
+</script>
+</body>
+</html>
