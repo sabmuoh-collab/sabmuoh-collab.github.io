@@ -40,13 +40,14 @@ header{display:flex;justify-content:space-between;align-items:center;padding:14p
 .grid{display:grid;grid-template-columns:1fr;gap:20px;padding:0 16px 50px;max-width:960px;margin:auto}
 @media(min-width:700px){.grid{grid-template-columns:1fr 1fr}}
 .card{position:relative;border:1px solid var(--line);padding:18px;background:linear-gradient(180deg,#1a1510,var(--card));border-radius:14px;animation:fadeUp .7s ease both;transition:transform .3s,border-color .3s,box-shadow .3s}
-.card:nth-child(2){animation-delay:.12s}.card:nth-child(3){animation-delay:.24s}.card:nth-child(4){animation-delay:.36s}
+.card:nth-child(2){animation-delay:.12s}.card:nth-child(3){animation-delay:.24s}.card:nth-child(4){animation-delay:.36s}.card:nth-child(5){animation-delay:.48s}.card:nth-child(6){animation-delay:.6s}
 .card:hover{transform:translateY(-4px);border-color:var(--gold);box-shadow:0 12px 34px rgba(212,175,95,.15)}
 .badge{position:absolute;top:14px;right:14px;background:#8c1f2b;color:#fff;font-size:11px;letter-spacing:1px;padding:5px 10px;border-radius:20px;z-index:2}
-.pic{height:210px;background:radial-gradient(circle at 50% 40%,rgba(212,175,95,.2),#120f0c 70%);display:flex;align-items:center;justify-content:center;margin-bottom:14px;overflow:hidden;border-radius:10px}
-.pic img{width:100%;height:100%;object-fit:cover}
+.pic{height:260px;background:radial-gradient(circle at 50% 45%,rgba(212,175,95,.32),rgba(212,175,95,.06) 45%,#0f0c0a 75%);display:flex;align-items:center;justify-content:center;margin-bottom:14px;overflow:hidden;border-radius:10px}
+.pic img{width:100%;height:100%;object-fit:contain;padding:14px;filter:drop-shadow(0 14px 18px rgba(0,0,0,.65))}
 .card h3{font-weight:500;color:var(--gold2);letter-spacing:2px;font-size:24px}
 .brand{font-size:11px;color:var(--muted);letter-spacing:3px;margin:4px 0 10px;text-transform:uppercase}
+.desc{font-size:14px;color:var(--text);line-height:1.6;margin-bottom:12px}
 .notes{font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:12px;border-top:1px solid var(--line);padding-top:10px}
 .notes b{color:var(--gold);font-weight:400}
 .price{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;margin-bottom:4px}
@@ -183,28 +184,50 @@ var PHONE = "221789607050";
 var DEFAULT_LANG = "en";   // change to "fr" or "ar" to open the site in that language
 
 // ===== YOUR PRODUCTS (edit this list) =====
+// image: put the photo name here once uploaded, for example "images/aventus.png". Empty = gold bottle drawing.
 // fr: and ar: are the French and Arabic versions. If you leave them out, English is shown.
 var products = [
-  {id:1, name:"Amber Noir", brand:"AMBER", category:"Unisex", occasion:"Evening", type:"Oriental",
-   top:"Bergamot", middle:"Rose, Saffron", base:"Amber, Oud",
-   price:2500, oldPrice:3000, stock:10, image:"",
-   fr:{type:"Oriental", occasion:"Soirée", top:"Bergamote", middle:"Rose, Safran", base:"Ambre, Oud"},
-   ar:{name:"عنبر نوار", type:"شرقي", occasion:"سهرة", top:"برغموت", middle:"ورد، زعفران", base:"عنبر، عود"}},
-  {id:2, name:"Rose Royale", brand:"AMBER", category:"Women", occasion:"Wedding", type:"Floral",
-   top:"Pink pepper", middle:"Damask rose", base:"Musk, Vanilla",
-   price:2800, oldPrice:0, stock:5, image:"",
-   fr:{type:"Floral", occasion:"Mariage", top:"Poivre rose", middle:"Rose de Damas", base:"Musc, Vanille"},
-   ar:{name:"روز رويال", type:"زهري", occasion:"زفاف", top:"فلفل وردي", middle:"ورد دمشقي", base:"مسك، فانيليا"}},
-  {id:3, name:"Oud Prestige", brand:"AMBER", category:"Men", occasion:"Special occasion", type:"Woody",
-   top:"Cardamom", middle:"Leather", base:"Oud, Sandalwood",
-   price:3500, oldPrice:0, stock:0, image:"",
-   fr:{type:"Boisé", occasion:"Occasion spéciale", top:"Cardamome", middle:"Cuir", base:"Oud, Santal"},
-   ar:{name:"عود بريستيج", type:"خشبي", occasion:"مناسبة خاصة", top:"هيل", middle:"جلد", base:"عود، صندل"}},
-  {id:4, name:"Citrus Dawn", brand:"AMBER", category:"Unisex", occasion:"Daily", type:"Fresh",
-   top:"Lemon, Mint", middle:"Jasmine", base:"White musk",
-   price:1800, oldPrice:2000, stock:20, image:"",
-   fr:{name:"Aube d'agrumes", type:"Frais", occasion:"Quotidien", top:"Citron, Menthe", middle:"Jasmin", base:"Musc blanc"},
-   ar:{name:"فجر الحمضيات", type:"منعش", occasion:"يومي", top:"ليمون، نعناع", middle:"ياسمين", base:"مسك أبيض"}}
+  {id:1, name:"Imagination", brand:"Louis Vuitton", category:"Unisex", occasion:"Daily, Summer", type:"Citrus",
+   desc:"A fresh, sparkling citrus fragrance with warm tea and ginger. Light, elegant and full of energy.",
+   top:"Calabrian bergamot, Orange, Citron", middle:"Chinese black tea, Ginger, Cinnamon", base:"Ambroxan, Guaiac wood, Incense",
+   price:2000, oldPrice:0, stock:5, image:"images/imagination.png",
+   fr:{type:"Agrumes", occasion:"Quotidien, Été", desc:"Un parfum frais et pétillant d'agrumes, de thé chaud et de gingembre. Léger, élégant et plein d'énergie.", top:"Bergamote de Calabre, Orange, Cédrat", middle:"Thé noir de Chine, Gingembre, Cannelle", base:"Ambroxan, Bois de gaïac, Encens"},
+   ar:{type:"حمضي", occasion:"يومي، صيفي", desc:"عطر حمضي منعش ومتألق مع الشاي الدافئ والزنجبيل. خفيف وأنيق ومليء بالحيوية.", top:"برغموت كالابريا، برتقال، ليمون", middle:"شاي أسود صيني، زنجبيل، قرفة", base:"أمبروكسان، خشب الغاياك، بخور"}},
+
+  {id:2, name:"Oud Wood", brand:"Tom Ford", category:"Unisex", occasion:"Evening, Special occasion", type:"Woody",
+   desc:"A smooth, luxurious blend of rare oud and sandalwood with a touch of spice. Deep, refined and long lasting.",
+   top:"Rosewood, Cardamom, Sichuan pepper", middle:"Oud wood, Sandalwood, Vetiver", base:"Tonka bean, Amber, Vanilla",
+   price:2000, oldPrice:0, stock:5, image:"images/oud-wood.png",
+   fr:{type:"Boisé", occasion:"Soirée, Occasion spéciale", desc:"Un mélange doux et luxueux d'oud rare et de santal avec une touche d'épices. Profond, raffiné et tenace.", top:"Bois de rose, Cardamome, Poivre du Sichuan", middle:"Bois d'oud, Santal, Vétiver", base:"Fève tonka, Ambre, Vanille"},
+   ar:{type:"خشبي", occasion:"سهرة، مناسبة خاصة", desc:"مزيج ناعم وفاخر من العود النادر والصندل مع لمسة من التوابل. عميق وراقٍ ويدوم طويلًا.", top:"خشب الورد، هيل، فلفل سيشوان", middle:"خشب العود، صندل، فيتيفر", base:"فول التونكا، عنبر، فانيليا"}},
+
+  {id:3, name:"Baccarat Rouge 540 Extrait", brand:"Maison Francis Kurkdjian", category:"Unisex", occasion:"Evening, Wedding", type:"Amber Floral",
+   desc:"A radiant, airy and addictive scent with saffron and amber. Luminous, sweet and unforgettable.",
+   top:"Saffron, Jasmine", middle:"Amberwood, Ambergris", base:"Fir resin, Cedar",
+   price:2000, oldPrice:0, stock:5, image:"images/baccarat-rouge-540.png",
+   fr:{type:"Ambré floral", occasion:"Soirée, Mariage", desc:"Un parfum lumineux, aérien et addictif au safran et à l'ambre. Doux et inoubliable.", top:"Safran, Jasmin", middle:"Bois ambré, Ambre gris", base:"Résine de sapin, Cèdre"},
+   ar:{type:"عنبري زهري", occasion:"سهرة، زفاف", desc:"عطر مشرق وخفيف وإدماني بالزعفران والعنبر. حلو ومضيء ولا يُنسى.", top:"زعفران، ياسمين", middle:"خشب العنبر، عنبر رمادي", base:"راتنج التنوب، أرز"}},
+
+  {id:4, name:"Layton", brand:"Parfums de Marly", category:"Men", occasion:"Evening, Winter", type:"Aromatic Spicy",
+   desc:"A bold and elegant blend of apple, lavender and vanilla with warm spices. A strong signature scent.",
+   top:"Apple, Lavender, Bergamot, Mandarin", middle:"Geranium, Violet, Jasmine", base:"Vanilla, Cardamom, Sandalwood, Patchouli, Pepper",
+   price:2000, oldPrice:0, stock:5, image:"images/layton.png",
+   fr:{type:"Aromatique épicé", occasion:"Soirée, Hiver", desc:"Un mélange audacieux et élégant de pomme, lavande et vanille aux épices chaudes. Une signature forte.", top:"Pomme, Lavande, Bergamote, Mandarine", middle:"Géranium, Violette, Jasmin", base:"Vanille, Cardamome, Santal, Patchouli, Poivre"},
+   ar:{type:"عطري حار", occasion:"سهرة، شتوي", desc:"مزيج جريء وأنيق من التفاح والخزامى والفانيليا مع توابل دافئة. عطر ذو بصمة قوية.", top:"تفاح، خزامى، برغموت، يوسفي", middle:"إبرة الراعي، بنفسج، ياسمين", base:"فانيليا، هيل، صندل، باتشولي، فلفل"}},
+
+  {id:5, name:"Naxos", brand:"Xerjoff", category:"Unisex", occasion:"Evening, Winter", type:"Sweet Spicy",
+   desc:"A rich and creamy mix of honey, tobacco and vanilla with a fresh citrus opening. Warm, sweet and luxurious.",
+   top:"Lavender, Bergamot, Lemon, Cinnamon", middle:"Honey, Tobacco leaf, Cashmeran, Jasmine", base:"Vanilla, Tonka bean, Cashmeran",
+   price:2000, oldPrice:0, stock:5, image:"images/naxos.png",
+   fr:{type:"Sucré épicé", occasion:"Soirée, Hiver", desc:"Un mélange riche et crémeux de miel, tabac et vanille avec une ouverture fraîche d'agrumes. Chaud et luxueux.", top:"Lavande, Bergamote, Citron, Cannelle", middle:"Miel, Feuille de tabac, Cashmeran, Jasmin", base:"Vanille, Fève tonka, Cashmeran"},
+   ar:{type:"حلو حار", occasion:"سهرة، شتوي", desc:"مزيج غني وكريمي من العسل والتبغ والفانيليا مع افتتاحية حمضية منعشة. دافئ وحلو وفاخر.", top:"خزامى، برغموت، ليمون، قرفة", middle:"عسل، أوراق التبغ، كشمير، ياسمين", base:"فانيليا، فول التونكا، كشمير"}},
+
+  {id:6, name:"Aventus", brand:"Creed", category:"Men", occasion:"Daily, Business, Evening", type:"Fruity Woody",
+   desc:"A famous fragrance of pineapple, birch and musk. Confident, fresh and powerful, made for strong personalities.",
+   top:"Pineapple, Bergamot, Apple, Blackcurrant", middle:"Birch, Patchouli, Jasmine, Rose", base:"Musk, Oakmoss, Ambergris, Vanilla",
+   price:2000, oldPrice:0, stock:5, image:"images/aventus.png",
+   fr:{type:"Fruité boisé", occasion:"Quotidien, Travail, Soirée", desc:"Un parfum célèbre d'ananas, de bouleau et de musc. Confiant, frais et puissant, pour les fortes personnalités.", top:"Ananas, Bergamote, Pomme, Cassis", middle:"Bouleau, Patchouli, Jasmin, Rose", base:"Musc, Mousse de chêne, Ambre gris, Vanille"},
+   ar:{type:"فاكهي خشبي", occasion:"يومي، عمل، سهرة", desc:"عطر شهير بالأناناس والبتولا والمسك. واثق ومنعش وقوي، لأصحاب الشخصية القوية.", top:"أناناس، برغموت، تفاح، كشمش أسود", middle:"بتولا، باتشولي، ياسمين، ورد", base:"مسك، طحلب البلوط، عنبر رمادي، فانيليا"}}
 ];
 
 // ===== APPROVED REVIEWS (replace the samples with real reviews) =====
@@ -348,12 +371,13 @@ function drawProducts(){
   var list = products.filter(function(p){ return filter=="All" || p.category==filter; });
   document.getElementById("grid").innerHTML = list.map(function(p){
     var nm = pf(p,"name");
-    var pic = p.image ? '<img src="'+p.image+'" alt="'+nm+'">' : BOTTLE;
+    var pic = p.image ? '<img src="'+p.image+'" alt="'+esc(nm)+'" loading="lazy" onerror="this.outerHTML=BOTTLE">' : BOTTLE;
     var disc = p.oldPrice>p.price ? '<div class="badge" dir="ltr">-'+Math.round((1-p.price/p.oldPrice)*100)+'%</div>' : '';
     var old = p.oldPrice>p.price ? '<span class="old">'+fmt(p.oldPrice)+'</span>' : '';
     var st = p.stock>0 ? '<div class="stock in">&#9679; '+d.instock+'</div>' : '<div class="stock out">&#9679; '+d.out+'</div>';
+    var ds = pf(p,"desc") ? '<div class="desc">'+pf(p,"desc")+'</div>' : '';
     return '<div class="card">'+disc+'<div class="pic">'+pic+'</div>'+
-      '<h3>'+nm+'</h3><div class="brand">'+p.brand+' &bull; '+d.cats[p.category]+' &bull; '+pf(p,"type")+'</div>'+
+      '<h3>'+nm+'</h3><div class="brand">'+p.brand+' &bull; '+d.cats[p.category]+' &bull; '+pf(p,"type")+'</div>'+ds+
       '<div class="notes"><b>'+d.top+'</b> &nbsp;'+pf(p,"top")+'<br><b>'+d.heart+'</b> &nbsp;'+pf(p,"middle")+'<br><b>'+d.base+'</b> &nbsp;'+pf(p,"base")+'<br><b>'+d.occ+'</b> &nbsp;'+pf(p,"occasion")+'</div>'+
       '<div class="price">'+fmt(p.price)+old+'</div>'+st+
       '<button class="add" '+(p.stock>0?'':'disabled')+' onclick="add('+p.id+')">'+(p.stock>0?d.add:d.sold)+'</button></div>';
